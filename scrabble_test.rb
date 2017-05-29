@@ -17,6 +17,16 @@ class ScrabbleTest < MiniTest::Test
     assert_equal 0, game.score(nil)
   end
 
+  def test_input_for_special_characters
+    game = Scrabble.new
+    assert_equal 'Invalid Input', game.score('he%llo')
+  end
+
+  def test_input_for_numbers
+    game = Scrabble.new
+    assert_equal 'Invalid Input', game.score('h3llo')
+  end
+
   def test_score_hello
     game = Scrabble.new
     assert_equal 8, game.score("hello")
@@ -27,5 +37,5 @@ class ScrabbleTest < MiniTest::Test
     assert_equal 14, game.score("cabbage")
   end
 
-  
+
 end

@@ -27,14 +27,18 @@ class Scrabble
       if input === nil
         return 0
       else
-        @word = input.upcase
-        @word_split = @word.split('')
+        if input =~ /[^a-zA-Z]/ # check for characters other than letters
+          return 'Invalid Input'
+        else
+          @word = input.upcase
+          @word_split = @word.split('')
 
-        @word_split.each do |letter|
-          @total_value += @letter_value[letter]
+          @word_split.each do |letter|
+            @total_value += @letter_value[letter]
+          end
+
+          return @total_value
         end
-
-        return @total_value
       end
     end
   end
